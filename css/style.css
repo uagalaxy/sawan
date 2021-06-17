@@ -1,11 +1,11 @@
 html, body {
-    overflow-x: hidden;
     height: 100%;
 }
 body {
     padding: 0;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -1769,11 +1769,7 @@ select:focus {
      -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
 }
 .pages-card-box{
-  transition: all 0.5s ease-in;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform:translatey(-50%);
+  position: relative;
   text-align: center;
   padding: 20px;
   box-sizing:border-box;
@@ -1781,6 +1777,7 @@ select:focus {
 }
 
 .pages-card-box .img{
+  animation: blink 2s infinite;
   cursor: pointer;
   width: 120px;
   height: 120px;
@@ -1798,17 +1795,23 @@ select:focus {
 }
 
 .pages button{
-  -webkit-animation: pulse 0.2s infinite;
-  animation: pulse 2s infinite;
+  -webkit-animation: pulse 1.4s infinite;
+  animation: pulse 1.2s infinite;
   cursor: pointer;
-  width: 100px;
-  height: 30px;
-  border: #00fff200;
+  border: 0;
   border-radius: 20px;
-  background-image: radial-gradient( circle at left, #dff800, #ff008c);
+  width: 100px;
+  height: 35px;
+  background-color: #1fd1f9;
+ background-image: linear-gradient(315deg, #f91f1f 0%, #f721fe 74%);
+  transition: all 0.4s ease;
 }
 .pages button:hover{
-  background-image: radial-gradient( circle at left, #ff008c ,#dff800);
+  
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
 }
 @-webkit-keyframes pulse {
   0% {
@@ -1830,7 +1833,43 @@ select:focus {
             transform: translate(15px, 0px); }
   100% {
     -webkit-transform: translate(0, 0);
-            transform: translate(0, 0); } }
-
-
-
+            transform: translate(0, 0); } 
+}
+@keyframes blink{
+  0% {
+    opacity: 100%;
+    shadow: 0 0 15px black;
+  }
+  10%,80%,40% {
+    opacity: 90%;
+    shadow: 0 0 15px black;
+  }
+  20% {
+    opacity: 95%;
+    shadow: 0 0 15px black;
+  }
+  30% {
+    opacity: 70%;
+    shadow: 0 0 15px black;
+  }
+  50% {
+    opacity: 60%;
+    shadow: 0 0 15px cyan;
+  }
+  60% {
+    opacity: 40%;
+    shadow: 0 0 15px black;
+  }
+  70% {
+    opacity: 10%;
+    shadow: 0 0 15px black;
+  }
+  90% {
+    opacity: 0%;
+    shadow: 0 0 15px black;
+  }
+  100% {
+    opacity: 100%;
+    shadow: 0 0 15px rgb(0, 0, 0);
+  }
+}
