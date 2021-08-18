@@ -1,3 +1,4 @@
+document.addEventListener('contextmenu', event => event.preventDefault());
 
 const filterImg = document.querySelectorAll(".pre, .inner-area");
 
