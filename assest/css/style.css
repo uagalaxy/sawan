@@ -1,15 +1,15 @@
-html {
+html{
   scroll-behavior: smooth;
 }
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Varela Round', sans-serif;
+    font-family:Arial ;
     overflow-x: hidden;
-    scroll-behavior: smooth;
-    background: #ddd;
+    background: #dedede;
     background-repeat: no-repeat;
-     font-family:monospace ;
+    scroll-behavior: smooth;
+    user-select: none;
 }
 :root {
   --light-color: #fefefe;
@@ -57,6 +57,10 @@ body {
 ::-webkit-scrollbar-corner {
   background: none;
 }
+ul{
+  list-style-type: none;
+  display: contents;
+}
 @font-face {
   font-family: uaworld;
   src: url(/assest/font/ua.ttf);
@@ -72,11 +76,152 @@ body {
   src: url(/assest/font/ua1.ttf);
   font-weight:900;
 }
+.cursor-dot,
+.cursor-dot-outline {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.cursor-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #000000;
+}
+
+.cursor-dot-outline {
+  width: 50px;
+  height: 50px;
+  border: 2px solid red;
+  background-color: #00000000;
+  
+}
+.menu {
+    position: absolute;
+    width: 200px;
+    padding: 2px;
+    margin: 0;
+    border: 1px solid #bbb;
+    background: #eee;
+    background: linear-gradient(to bottom, #fff 0%, #e5e5e5 100px, #e5e5e5 100%);
+    z-index: 100;
+    border-radius: 3px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,.2);
+    opacity: 0;
+    transform: translate(0, 15px) scale(.95);
+    transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+    pointer-events: none;
+}
+
+.menu-item {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.menu-btn { 
+    display: block;
+    color: #444;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 8px;
+    border-radius: 3px;
+}
+
+button.menu-btn {
+    background: none;
+    line-height: normal;
+    overflow: visible;
+    width: 100%;
+    text-align: left;
+}
+
+a.menu-btn {
+    outline: 0 none;
+    text-decoration: none;
+}
+
+.menu-text {
+    margin-left: 25px;
+}
+
+.menu-btn .fa {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-item:hover > .menu-btn { 
+    color: #fff; 
+    outline: none; 
+    background-color: #2E3940;
+    background: linear-gradient(to bottom, #5D6D79, #2E3940);
+    border: 1px solid #2E3940;
+}
+
+.menu-item-disabled {
+    opacity: .5;
+    pointer-events: none;
+}
+
+.menu-item-disabled .menu-btn {
+    cursor: default;
+}
+
+.menu-separator {
+    display:block;
+    margin: 7px 5px;
+    height:1px;
+    border-bottom: 1px solid #fff;
+    background-color: #aaa;
+}
+
+.menu-item-submenu::after {
+    content: "";
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-left-color: #808080; 
+}
+
+.menu-item-submenu:hover::after {
+    border-left-color: #fff;
+}
+
+.menu .menu {
+    top: 4px;
+    left: 99%;
+}
+
+.menu-show,
+.menu-item:hover > .menu {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    pointer-events: auto;
+}
+
+.menu-item:hover > .menu {
+    transition-delay: 300ms;
+}
 header {
     display: block;
     margin: 0 auto;
     width: 100%;
     max-width: 100%;
+    -webkit-backdrop-filter: blur(5);
     box-shadow: 0 0 10px #000000;
     background-color: #ffffff00;
     backdrop-filter: blur(5px);
@@ -130,7 +275,7 @@ header {
   justify-self: center;
   width: 75%;
   height: auto;
-  margin-top:40px;
+  margin-top:23px;
   margin-left: 40%;
 }
 
@@ -139,7 +284,7 @@ header {
 }
 
 .home__title{
-  font-size: 500%;
+  font-size: 1000%;
   position: relative;
   color: rgb(0, 46, 42);
   font-family: uaworld;
@@ -149,22 +294,22 @@ header {
 }
 .home__description{
   margin-bottom: 2.5rem;
-  font-size: large;
+  font-size: x-large;
   color:var(--font-color);
   margin: 0px 0px 20px -34%;
   text-align: center;
 }
 
 #sidebarMenu {
-  height: 850%;
+  height: 10000PX;
     position: fixed;
     left: 0;
-    width: 250px;
+    width: 200px;
     border-radius: 4px;
     top: 60px;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
-    background: linear-gradient(  #014f52,#014f52d0, #00fff200);
+    background: #014f52;
 }
 .sidebarMenuInner{
     margin:0;
@@ -308,7 +453,17 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   text-decoration: none;
   padding: 0px 6px;
 }
-
+@keyframes clock {
+     0%{background: linear-gradient(#ff0000,rgb(255, 102, 0));}
+  12.5%{background: linear-gradient(#ff6600,rgb(238, 255, 0));}
+    25%{background: linear-gradient(rgb(255, 208, 0),rgb(21, 255, 0));}
+  37.5%{background: linear-gradient(rgb(51, 255, 0),rgb(0, 255, 191));}
+    50%{background: linear-gradient(rgb(0, 255, 191),rgb(0, 119, 255));}
+  62.5%{background: linear-gradient(rgb(0, 140, 255),rgb(20, 57, 220));}
+    75%{background: linear-gradient(rgb(0, 26, 255),rgb(140, 20, 220));}
+  87.5%{background: linear-gradient(rgb(183, 0, 255),rgb(255, 0, 98));}
+   100%{background: linear-gradient(rgb(255, 0, 85),red);}
+}
 @keyframes button{
   0%{ left: 40%;}
   50%{ left: 42%;}
@@ -337,7 +492,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     100%{ left: 200%;}
 }
 section{
-  background: #ddd;
+  background: #dedede;
   margin-bottom: -8px;
 }
 .hero-sawan{
@@ -430,6 +585,7 @@ section{
   margin: 10px 0 5px 0;
 }
 .wrapper .about{
+  text-align: center;
   color: #44476a;
   font-weight: 400;
   font-size: 16px;
@@ -548,18 +704,20 @@ section{
   pointer-events: auto;
 }
 .preview-box{
+  cursor: auto;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.9);
   background: #e0e6eb;
   height: 500px;
-  z-index: 5;
+  z-index: 100;
   opacity: 0;
   pointer-events: none;
   border-radius: 10px;
   padding: 0 5px 5px 5px;
   box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+  list-style: none;
 }
 .preview-box.show{
   opacity: 1;
@@ -568,7 +726,7 @@ section{
   transition: all 0.3s ease;
 }
 .preview-box .details{
-  padding: 13px 15px 13px 10px;
+  list-style: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -581,7 +739,7 @@ section{
 .details .title p{
   display: inline;
   font-weight: 500;
-  margin: 3px;
+  margin: 0px;
 }
 .details .icon{
   color: #007bff;
@@ -604,7 +762,8 @@ section{
   width: 100%;
   z-index: 2;
   display: none;
-  background: #00000000;
+  background: #0000007c;
+  -webkit-backdrop-filter: blur(5);
   backdrop-filter: blur(5px);
 }
 .shadow.show{
@@ -651,7 +810,5 @@ form input,form textarea,.button{
   box-shadow: inset -3px -3px 7px #ffffff,
               inset 3px 3px 5px #ceced1;
 }
-
-
 
 
